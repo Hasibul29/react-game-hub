@@ -1,13 +1,14 @@
-import { Button, HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+import { Button, HStack, Image, List, ListItem } from "@chakra-ui/react";
 import useGenre, { Genre } from "../hooks/useGenre";
 import getCropedImageUrl from "../services/image-url";
 import GameListSkeleton from "./GameListSkeleton";
 
 interface Prop {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Prop) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Prop) => {
   const { data, isLoading, error } = useGenre();
 
   if (error) return null;
@@ -23,6 +24,7 @@ const GenreList = ({ onSelectGenre }: Prop) => {
               src={getCropedImageUrl(genre.image_background)}
             />
             <Button
+              fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
               onClick={() => onSelectGenre(genre)}
               fontSize="lg"
               variant="link"
