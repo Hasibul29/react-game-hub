@@ -6,7 +6,7 @@ import {
   List,
   ListItem,
 } from "@chakra-ui/react";
-import useGenre, { Genre } from "../hooks/useGenre";
+import useGenres, { Genre } from "../hooks/useGenres";
 import getCropedImageUrl from "../services/image-url";
 import GameListSkeleton from "./GameListSkeleton";
 
@@ -16,7 +16,7 @@ interface Prop {
 }
 
 const GenreList = ({ onSelectGenre, selectedGenreId }: Prop) => {
-  const { data, isLoading, error } = useGenre();
+  const { data, isLoading, error } = useGenres();
 
   if (error) return null;
   if (isLoading) return <GameListSkeleton />;

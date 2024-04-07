@@ -10,7 +10,7 @@ export interface Genre {
   image_background: string;
 }
 
-const useGenre = () =>
+const useGenres = () =>
   useQuery({
     queryKey: ["genres"],
     queryFn: apiClient.getAll,
@@ -18,4 +18,4 @@ const useGenre = () =>
     initialData: { count: genres.length, next: null, results: genres },
   });
 
-export default useGenre;
+export default useGenres;
